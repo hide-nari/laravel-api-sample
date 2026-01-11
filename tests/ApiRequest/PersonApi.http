@@ -1,0 +1,25 @@
+###
+GET http://localhost:8000/api/people
+
+###
+GET http://localhost:8000/api/person/1
+
+###
+GET http://localhost:8000/api/person/2
+
+###
+POST http://localhost:8000/api/person/store
+Content-Type: application/x-www-form-urlencoded
+
+name = saburo &
+age = 30
+
+###
+POST http://localhost:8000/api/person/1
+Content-Type: application/x-www-form-urlencoded
+
+name = taroAdd &
+age = 16
+
+###
+GET http://localhost:8000/api/person/delete/3

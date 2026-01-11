@@ -13,10 +13,12 @@ Route::get('/people', function () {
 });
 
 Route::post('/person/store', function (Request $request) {
-    return Person::create([
-        'name' => $request->name,
-        'age'  => $request->age,
+    $data = $request->validate([
+        'name' => ['required'],
+        'age'  => ['required', 'integer'],
     ]);
+
+    return Person::create($data);
 });
 
 Route::get('/person/{person}', function (Person $person) {
@@ -24,19 +26,17 @@ Route::get('/person/{person}', function (Person $person) {
 });
 
 Route::post('/person/{person}', function (Person $person, Request $request) {
-    $person->update([
-        'name' => $request->name,
-        'age'  => $request->age,
+    $data = $request->validate([
+        'name' => ['required'],
+        'age'  => ['required', 'integer'],
     ]);
-});
 
-Route::post('/person/store', function (Request $request) {
-    return Person::create([
-        'name' => $request->name,
-        'age'  => $request->age,
-    ]);
+    $person->update($data);
+
+    return $person;
 });
 
 Route::get('/person/delete/{person}', function (Person $person) {
     $person->delete();
+    return $person->withTrashed()->get();
 });
