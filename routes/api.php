@@ -35,5 +35,5 @@ Route::post('/person/{person}', function (Person $person, Request $request) {
 Route::get('/person/delete/{person}', function (Person $person) {
     $person->delete();
 
-    return $person->withTrashed()->get();
+    return Person::withTrashed()->find($person->id);
 });
