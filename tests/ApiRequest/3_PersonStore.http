@@ -1,0 +1,5 @@
+POST http://localhost:8000/api/person/store
+Content-Type: application/x-www-form-urlencoded
+
+name = saburo &
+age = 30
