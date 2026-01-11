@@ -109,8 +109,6 @@ test('person model api update no name pattern', function () {
 
     sleep(1);
 
-    $workTime = Carbon::now();
-
     $responseTwo = $this->post('/api/person/1',
         ['age' => 20]);
 

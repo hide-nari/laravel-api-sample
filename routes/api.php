@@ -4,10 +4,6 @@ use App\Models\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
 Route::get('/people', function () {
     return Person::all();
 });
@@ -38,5 +34,6 @@ Route::post('/person/{person}', function (Person $person, Request $request) {
 
 Route::get('/person/delete/{person}', function (Person $person) {
     $person->delete();
+
     return $person->withTrashed()->get();
 });
