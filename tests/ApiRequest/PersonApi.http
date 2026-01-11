@@ -15,8 +15,7 @@ name = saburo &
 age = 30
 
 ###
-POST http://localhost:8000/api/person
-    /1
+POST http://localhost:8000/api/person/1
 Content-Type: application/x-www-form-urlencoded
 
 name = taroAdd &
