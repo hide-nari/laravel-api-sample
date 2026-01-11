@@ -8,32 +8,22 @@ Route::get('/people', function () {
     return Person::all();
 });
 
+Route::get('/person/{person}', fn(Person $person) => $person);
+
 Route::post('/person/store', function (Request $request) {
-    $data = $request->validate([
+    return Person::create($request->validate([
         'name' => ['required'],
         'age'  => ['required', 'integer'],
-    ]);
-
-    return Person::create($data);
-});
-
-Route::get('/person/{person}', function (Person $person) {
-    return $person;
+    ]));
 });
 
 Route::post('/person/{person}', function (Person $person, Request $request) {
-    $data = $request->validate([
+    return $person->update($request->validate([
         'name' => ['required'],
         'age'  => ['required', 'integer'],
-    ]);
-
-    $person->update($data);
-
-    return $person;
+    ]));
 });
 
 Route::get('/person/delete/{person}', function (Person $person) {
-    $person->delete();
-
-    return Person::withTrashed()->find($person->id);
+    return $person->delete();
 });
