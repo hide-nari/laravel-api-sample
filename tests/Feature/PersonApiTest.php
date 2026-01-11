@@ -68,6 +68,13 @@ test('person model api person no name error', function () {
     $response->assertStatus(302);
 });
 
+test('person model api person age string error', function () {
+    $response = $this->post('/api/person/store',
+        ['age' => 'fifteen']);
+
+    $response->assertStatus(302);
+});
+
 test('person model api person no age error', function () {
     $response = $this->post('/api/person/store',
         ['name' => 'taro']);
@@ -147,4 +154,3 @@ test('person model api delete pattern', function () {
         ->and($person->deleted_at->toAtomString())
         ->toBe($workTime->toAtomString());
 });
-
