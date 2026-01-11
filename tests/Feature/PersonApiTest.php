@@ -61,6 +61,20 @@ test('person model api store pattern', function () {
         ->toBe($workTime->toAtomString());
 });
 
+test('person model api person no name error', function () {
+    $response = $this->post('/api/person/store',
+        ['age' => 15]);
+
+    $response->assertStatus(302);
+});
+
+test('person model api person no age error', function () {
+    $response = $this->post('/api/person/store',
+        ['name' => 'taro']);
+
+    $response->assertStatus(302);
+});
+
 test('person model api update pattern', function () {
     $response = $this->post('/api/person/store',
         ['name' => 'taro', 'age' => 15]);
@@ -87,6 +101,33 @@ test('person model api update pattern', function () {
 
 });
 
+test('person model api update no name pattern', function () {
+    $response = $this->post('/api/person/store',
+        ['name' => 'taro', 'age' => 15]);
+
+    $response->assertStatus(201);
+
+    sleep(1);
+
+    $workTime = Carbon::now();
+
+    $responseTwo = $this->post('/api/person/1',
+        ['age' => 20]);
+
+    $responseTwo->assertStatus(302);
+});
+
+test('person model api update no age pattern', function () {
+    $response = $this->post('/api/person/store',
+        ['name' => 'taro', 'age' => 15]);
+
+    $response->assertStatus(201);
+
+    $responseTwo = $this->post('/api/person/1',
+        ['name' => 'taro']);
+
+    $responseTwo->assertStatus(302);
+});
 
 test('person model api delete pattern', function () {
     $workTime = Carbon::now();
