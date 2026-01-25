@@ -1,4 +1,4 @@
-Person api sample on php version 8.4 or later.
+Person api sample on php version 8.4 and Laravel 12 or later.
 
 ## About this package
 
@@ -21,7 +21,7 @@ Person model api sample with sanctum
 - age
     - required,integer
 
-## Update Rules
+## Update rules
 
 When updating, execute the following command.
 
