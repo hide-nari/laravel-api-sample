@@ -1,17 +1,29 @@
 Person api sample on php version 8.4 or later.
 
 ## About this package
+
 Person model api sample with sanctum
 
 - Read
-  - GET:/api/people
-  - GET:/api/person/{id}
+    - GET:/api/people
+    - GET:/api/person/{id}
 - Create
-  - POST:/api/person/store
+    - POST:/api/person/store
 - Update
-  - POST:/api/person/{id}
+    - POST:/api/person/{id}
 - Delete
-  - GET:/api/person/delete/{id}
+    - GET:/api/person/delete/{id}
+
+## Validate check
+
+- name
+    - required
+- age
+    - required,integer
+
+## Update Rules
+
+When updating, execute the following command.
 
 ```
 herd coverage ./vendor/bin/pest --coverage
